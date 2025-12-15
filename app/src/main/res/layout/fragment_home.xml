@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:background="@color/surface"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+             android:fitsSystemWindows="true"
+
+            android:paddingBottom="16dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    style="@style/TextAppearance.Material3.HeadlineMedium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="VoltGuard"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:cardCornerRadius="100dp"
+                    app:strokeWidth="0dp"
+                    android:elevation="0dp"
+                    app:cardBackgroundColor="@color/green"
+                    android:id="@+id/imgPremium"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    >
+                    <ImageView
+                        app:tint="@color/white"
+                        android:layout_gravity="center"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        app:srcCompat="@drawable/ic_chess_queen"
+                        />
+                </com.google.android.material.card.MaterialCardView>
+                <ImageView
+                    android:id="@+id/ic_setting"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/ic_settings"
+                    app:tint="@android:color/darker_gray"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fadeScrollbars="false"
+        tools:context=".ui.main.MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="10dp">
+
+                <com.base.baterynotification.utils.BatteryCircleView
+                    android:layout_marginVertical="16dp"
+                    android:id="@+id/batteryCircle"
+                    android:layout_width="260dp"
+                    android:layout_height="260dp" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:strokeWidth="0dp"
+                android:elevation="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/surfaceVariant"
+                app:cardCornerRadius="20dp"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_margin="16dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cảnh báo sạc đầy"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvsubTitle1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Rung chuông khi pin đạt ngưỡng"
+                        android:textSize="13sp"
+                        android:textColor="@color/grey_400"
+                        app:layout_constraintEnd_toStartOf="@+id/switchAlert"
+                        app:layout_constraintStart_toStartOf="@+id/tvTitle1"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTitle1" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchAlert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:useMaterialThemeColors="false"
+                        app:trackTint="@null"
+                        app:thumbTint="@null"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        app:track="@drawable/switch_track_selector"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvsubTitle1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvTitle1" />
+
+                    <TextView
+                        android:id="@+id/tvAlert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Mức cảnh báo"
+                        android:textColor="@color/grey_400"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvsubTitle1" />
+
+                    <TextView
+                        android:id="@+id/tvPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="80%"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#2196F3"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvAlert"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvAlert" />
+
+                    <androidx.appcompat.widget.AppCompatSeekBar
+                        android:id="@+id/sliderPercent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:min="20"
+
+                        android:layout_marginVertical="14dp"
+                        android:progressDrawable="@drawable/custom_seekbar_track"
+                        android:thumb="@drawable/custom_thumb"
+                        android:splitTrack="false"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAlert" />
+
+
+                    <TextView
+                        android:id="@+id/tvMinAlert"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20%"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sliderPercent" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100%"
+                        android:textSize="12sp"
+                        android:layout_marginTop="10dp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sliderPercent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/cvTemp"
+                        layout="@layout/item_info_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp" />
+
+                    <include
+                        android:id="@+id/cvLife"
+                        layout="@layout/item_info_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/cvVolt"
+                        layout="@layout/item_info_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp" />
+
+                    <include
+                        android:id="@+id/cvTech"
+                        layout="@layout/item_info_card"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111" />
+</LinearLayout>
