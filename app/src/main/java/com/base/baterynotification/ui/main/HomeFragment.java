@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment  {
         setupSwitchSeek();
         setupViewModelObservers();
         setupClickListeners();
-        loadInterstitialAd();
+//        loadInterstitialAd();
         setupAds();
 
     }
@@ -142,12 +142,9 @@ public class HomeFragment extends Fragment  {
 
         // Observe service running state
         viewModel.getIsServiceRunning().observe(getViewLifecycleOwner(), isRunning -> {
-            if (binding.switchAlert != null) {
+
                 binding.switchAlert.setChecked(isRunning);
-            }
-            else {
-                binding.switchAlert.setChecked(false);
-            }
+
         });
 
         viewModel.getRequestPermissionEvent().observe(getViewLifecycleOwner(), event -> {
@@ -205,6 +202,9 @@ public class HomeFragment extends Fragment  {
                     timeRemind = "";
                 }
                 batteryCircle.setChargingState(info.isCharging, timeRemind);
+                if(!info.isCharging){
+                    binding.switchAlert.setChecked(false);
+                }
                 batteryCircle.setShowSatelliteDot(true);
             }
         });
@@ -256,7 +256,14 @@ public class HomeFragment extends Fragment  {
         binding.switchAlert.setOnClickListener(view -> {
             boolean isChecked = binding.switchAlert.isChecked();
             if (isChecked) {
+
+
                 BatteryInfo info = viewModel.getRealtimeBatteryInfo().getValue();
+                if (info != null && !info.isCharging) {
+                    binding.switchAlert.setChecked(false);
+                    Toast.makeText(requireContext(), "Vui lòng cắm sạc trước!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 int targetLevel = viewModel.getTargetBatteryLevel().getValue() != null
                         ? viewModel.getTargetBatteryLevel().getValue() : 100;
                  if (info == null || info.batteryPercent < targetLevel) {
@@ -272,7 +279,7 @@ public class HomeFragment extends Fragment  {
             }
                 if (mInterstitialAd != null) {
                     mInterstitialAd.show(requireActivity());
-                    loadInterstitialAd();
+//                    loadInterstitialAd();
                 }
         });
 
@@ -380,12 +387,10 @@ public class HomeFragment extends Fragment  {
     */
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
         viewModel.refreshBatteryData();
         viewModel.checkServiceStatus();
     }
-
 }

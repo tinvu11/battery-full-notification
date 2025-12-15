@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupStatusBar() {
         int nightMode = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
         boolean isLightMode = nightMode == Configuration.UI_MODE_NIGHT_NO;
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
         WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView())
                 .setAppearanceLightStatusBars(true);
     }

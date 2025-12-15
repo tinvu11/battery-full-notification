@@ -104,6 +104,7 @@ public class BatteryMonitorService extends Service {
                 isAlertSent = true;
                 sendBatteryAlertNotification();
             } else if (!isCharging && !isFull) {
+               // trường hợp mà khi người dùng chưa cắm sạc thì tắt luôn
                 stopSelf();
             }
         }
